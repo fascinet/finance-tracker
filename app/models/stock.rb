@@ -9,7 +9,11 @@ class Stock < ApplicationRecord
       endpoint: 'https://sandbox.iexapis.com/v1')
 
     #we don't need to write its implied.
-    new(ticker: symbol, name: client.company(symbol).company_name,last_price: client.price(symbol))
+    begin
+      new(ticker: symbol, name: client.company(symbol).company_name,last_price: client.price(symbol))
+    rescue => exception
+      nil
+    end
   end
 
 end
