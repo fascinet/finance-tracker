@@ -20,7 +20,7 @@
           <% else %>
             <td><%= stock.last_price %></td>
           <% end %>
-          <td>#</td>
+          <td><%= link_to 'Remove' ,user_stock_path(stock),method: :delete, data: {confirm: 'Are your Sure'}, class: 'btn btn-sm btn-warning'%></td>
         </tr>
         <% end %>
       </tbody>
