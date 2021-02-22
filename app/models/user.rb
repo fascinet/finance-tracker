@@ -27,4 +27,8 @@ class User < ApplicationRecord
     under_stock_limit? and !stock_already_tracked?(symbol)
   end
 
+  def fullname
+    return first_name+" "+last_name if first_name or last_name
+    return "Anonymous"
+  end
 end
