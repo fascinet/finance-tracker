@@ -1,0 +1,29 @@
+<div class="row mt-4">
+  <div class="col-9 ">
+    <h3>Stocks Table</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Ticker</th>
+          <th scope="col">Name</th>
+          <th scope="col">Last Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for stock in @tracked_stocks%>
+        <tr>
+          <th scope="row"><%= stock.ticker %></th>
+          <td><%= stock.name %></td>
+          <% if stock.last_price==nil %>
+            <td>Not Updated</td>
+          <% else %>
+            <td><%= stock.last_price %></td>
+          <% end %>
+          <td>#</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
