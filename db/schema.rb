@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_183101) do
+ActiveRecord::Schema.define(version: 2021_02_22_192037) do
+
+  create_table "freindships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "freind_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["freind_id"], name: "index_freindships_on_freind_id"
+    t.index ["user_id"], name: "index_freindships_on_user_id"
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
@@ -43,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_183101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "freindships", "users"
+  add_foreign_key "freindships", "users", column: "freind_id"
   add_foreign_key "user_stocks", "stocks"
   add_foreign_key "user_stocks", "users"
 end

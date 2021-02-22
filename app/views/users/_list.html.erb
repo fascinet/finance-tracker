@@ -1,0 +1,27 @@
+<div class="row mt-4">
+  <div class="col-9 ">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for item in @my_freinds_list%>
+        <tr>
+          <th scope="row"><%= item.email %></th>
+          <td><%= item.first_name %></td>
+          <td><%= item.last_name %></td>
+          <td>
+              <%= link_to 'Stop Following' ,freindship_path(item) ,method: :delete, data: {confirm: 'Are your Sure'}, class: 'btn btn-sm btn-warning'%>
+              <%= link_to "View Profile",user_path(item),class: "btn btn-sm btn-success" %> 
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

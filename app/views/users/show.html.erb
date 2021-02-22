@@ -1,0 +1,32 @@
+<h2>User's Details</h2>
+
+<dl class="row">
+  <dt class="col-sm-3">Full Name</dt>
+  <dd class="col-sm-9"><%=@user.fullname %></dd>
+
+  <dt class="col-sm-3">Email</dt>
+  <dd class="col-sm-9">
+    <p><%= @user.email %></p>
+  </dd>
+
+  <dt class="col-sm-3">No.of Friends</dt>
+  <dd class="col-sm-9"><%= @user.freinds.count %></dd>
+
+  <dt class="col-sm-3">No. of Stocks Following </dt>
+  <dd class="col-sm-9"><%= @user.stocks.count %></dd>
+
+  <dt class="col-sm-3">
+  <% if current_user.not_friends_with?(@user.id) %>
+      <%= link_to "Follow Friend?" , freindships_path(freind: @user), method: :post, class: "btn btn-lg btn-success"%>
+  <% else %>
+    <span class="btn btn-lg btn-info">
+      You are already friends
+    </span>
+  <% end %>
+  </dt>
+</dl>
+
+<h2><%= @user.fullname %>'s Stocks</h2>
+<% if not @tracked_stocks.empty? %>
+  <%= render 'stocks/list'%>
+<% end %>
